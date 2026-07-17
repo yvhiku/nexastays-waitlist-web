@@ -6,6 +6,8 @@
   if (!form || !modal || !submitBtn) return;
 
   const STORAGE_KEY = "nexa_host_waitlist_applications";
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xwvgljwa";
+  const ENDPOINT = window.NEXA_WAITLIST_ENDPOINT || FORMSPREE_ENDPOINT;
 
   function openModal() {
     modal.classList.remove("opacity-0", "pointer-events-none");
@@ -39,6 +41,22 @@
     }
   }
 
+  async function parseFormspreeError(res) {
+    try {
+      const body = await res.json();
+      if (typeof body?.error === "string" && body.error) return body.error;
+      if (Array.isArray(body?.errors) && body.errors.length) {
+        return body.errors
+          .map((e) => e.message || e.error || String(e))
+          .filter(Boolean)
+          .join(" ");
+      }
+    } catch {
+      /* ignore parse errors */
+    }
+    return "Could not submit right now. Please try again.";
+  }
+
   modal.querySelectorAll("[data-close-modal]").forEach((el) => {
     el.addEventListener("click", closeModal);
   });
@@ -66,15 +84,18 @@
     }
 
     const phoneRaw = String(data.get("phone") || "").replace(/\s+/g, "");
+    const email = String(data.get("email") || "").trim().toLowerCase();
     const payload = {
       fullName: String(data.get("fullName") || "").trim(),
       phone: phoneRaw.startsWith("+") ? phoneRaw : `+212${phoneRaw.replace(/^0+/, "")}`,
-      email: String(data.get("email") || "").trim().toLowerCase(),
+      email,
       city,
       propertyType: String(data.get("propertyType") || ""),
       propertyCount: Number(data.get("propertyCount") || 1),
       propertyDetails: String(data.get("propertyDetails") || "").trim(),
       source: "waitlist-web",
+      _replyto: email,
+      _subject: `Nexa Stays host waitlist — ${city}`,
     };
 
     const original = submitBtn.innerHTML;
@@ -83,18 +104,20 @@
       '<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span> Submitting…';
 
     try {
-      const endpoint = window.NEXA_WAITLIST_ENDPOINT;
-      if (endpoint) {
-        const res = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(payload),
-        });
-        if (!res.ok) throw new Error("Could not submit right now. Please try again.");
-      } else {
-        await new Promise((r) => setTimeout(r, 700));
-        saveLocally(payload);
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error(await parseFormspreeError(res));
       }
+
+      saveLocally(payload);
       form.reset();
       window.NexaCitySelect?.reset();
       const riad = form.querySelector('input[name="propertyType"][value="RIAD"]');

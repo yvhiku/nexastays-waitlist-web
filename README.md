@@ -2,6 +2,8 @@
 
 Static landing for **founding host** acquisition. Visual system matches [`docs/NEXA_STAYS_WEB_DESIGN.md`](../docs/NEXA_STAYS_WEB_DESIGN.md) (Playfair + DM Sans, rose primary `#E8507A`).
 
+**Live site:** [https://join.nexastays.ma](https://join.nexastays.ma/index.html)
+
 ## Pages
 
 | File | Purpose |
@@ -18,15 +20,25 @@ npm run dev
 
 Open http://localhost:3080
 
-## Form submissions
+## Form submissions (Formspree)
 
-By default, applications are stored in the browser (`localStorage` key `nexa_host_waitlist_applications`) so you can demo without a backend.
+Applications POST via Ajax to Formspree form **host-waitlist**:
 
-To POST to a real endpoint, set before load:
+`https://formspree.io/f/xwvgljwa`
+
+You receive them in the Formspree **Submissions** tab (and email if configured). A local `localStorage` copy is also saved after a successful submit (`nexa_host_waitlist_applications`) for debugging only — Formspree is the source of truth.
+
+### Formspree settings for production
+
+1. **Restrict to Domain:** set `nexastays.ma` (covers `join.nexastays.ma`).
+2. If Formspree’s default **reCAPTCHA** is on, turn it off for Ajax (or add your own keys).
+3. After changing `js/apply.js`, **redeploy** so [join.nexastays.ma](https://join.nexastays.ma) picks up the update.
+
+Override the endpoint before scripts load if needed:
 
 ```html
 <script>
-  window.NEXA_WAITLIST_ENDPOINT = "https://your-api.example/waitlist";
+  window.NEXA_WAITLIST_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
 </script>
 ```
 
