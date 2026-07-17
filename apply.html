@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Host Application | Nexa Stays</title>
+    <meta
+      name="description"
+      content="Apply to become a founding Nexa Stays host in Morocco. 0% commission for the first 3 months."
+    />
+    <link rel="icon" href="assets/nexastays.png" type="image/png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "nexa-primary": "#E8507A",
+              "nexa-primary-dark": "#C93A62",
+              "nexa-primary-light": "#F4809A",
+              "nexa-primary-soft": "#FDF0F3",
+              "nexa-accent": "#F9A86C",
+              "nexa-accent-soft": "#FEF5EC",
+              "nexa-ink": "#1A1118",
+              "nexa-ink-2": "#3D2B36",
+              "nexa-ink-3": "#6B5460",
+              "nexa-ink-4": "#9E8A93",
+              "nexa-line": "#EDE0E5",
+              "nexa-bg": "#FDFBFC",
+              "nexa-bg-2": "#F8F2F5",
+            },
+            borderRadius: {
+              sm: "8px",
+              md: "14px",
+              lg: "22px",
+              xl: "32px",
+            },
+            fontFamily: {
+              display: ['"Playfair Display"', "Georgia", "serif"],
+              sans: ['"DM Sans"', "system-ui", "sans-serif"],
+            },
+            boxShadow: {
+              "nexa-sm": "0 2px 8px rgba(232,80,122,0.08)",
+              "nexa-md": "0 6px 24px rgba(232,80,122,0.12)",
+              "nexa-lg": "0 16px 48px rgba(232,80,122,0.16)",
+              "nexa-card": "0 4px 20px rgba(26,17,24,0.07)",
+              cta: "0 4px 16px rgba(232,80,122,.32)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="css/nexa.css" />
+  </head>
+  <body class="overflow-x-hidden bg-nexa-bg font-sans text-nexa-ink antialiased">
+    <main class="flex min-h-screen flex-col md:flex-row">
+      <!-- Brand panel -->
+      <section class="relative h-72 w-full overflow-hidden md:h-screen md:w-1/2 lg:w-3/5">
+        <img
+          alt=""
+          class="absolute inset-0 h-full w-full object-cover"
+          src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-nexa-ink/75 via-nexa-ink/30 to-transparent"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-5 md:p-16">
+          <div class="glass-card nexa-fade-up max-w-xl rounded-xl p-8 text-white md:p-12">
+            <h1 class="mb-5 font-display text-3xl font-bold leading-tight md:text-5xl">
+              Become a Founding Host
+            </h1>
+            <p class="mb-8 font-sans text-base leading-relaxed text-white/90 md:text-lg">
+              Join the first 100 hosts and enjoy
+              <span class="font-semibold text-nexa-primary-light">0% commission</span>
+              for your first 3 months.
+            </p>
+            <ul class="mb-10 space-y-5">
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined icon-fill text-nexa-primary-light">verified</span>
+                <div>
+                  <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-white">
+                    Priority verification
+                  </h3>
+                  <p class="mt-1 text-sm text-white/70">Reviewed by our team within 48 hours.</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined icon-fill text-nexa-primary-light">stars</span>
+                <div>
+                  <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-white">
+                    Featured launch placement
+                  </h3>
+                  <p class="mt-1 text-sm text-white/70">Founding hosts get early visibility on Nexa Stays.</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined icon-fill text-nexa-primary-light">support_agent</span>
+                <div>
+                  <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-white">
+                    Dedicated support
+                  </h3>
+                  <p class="mt-1 text-sm text-white/70">Help with listing quality, photos, and go-live.</p>
+                </div>
+              </li>
+            </ul>
+            <p class="font-sans text-xs font-semibold uppercase tracking-widest text-white/75">
+              Limited founding cohort · first 100 hosts
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Form -->
+      <section class="custom-scrollbar flex w-full flex-col overflow-y-auto bg-nexa-bg md:w-1/2 md:h-screen lg:w-2/5">
+        <header
+          class="sticky top-0 z-20 flex items-center justify-between border-b border-nexa-line/40 bg-nexa-bg/90 px-5 py-5 backdrop-blur-md md:px-10"
+        >
+          <a class="flex items-center gap-2" href="index.html">
+            <img alt="Nexa Stays" class="h-8 w-8 object-contain" src="assets/nexastays.png" width="32" height="32" />
+            <span class="font-display text-xl font-bold tracking-tight sm:text-2xl">
+              <span class="text-nexa-ink">Nexa</span>
+              <span class="text-nexa-primary">Stays</span>
+            </span>
+          </a>
+          <a
+            class="inline-flex min-h-[44px] items-center gap-2 font-sans text-sm font-semibold text-nexa-ink-2 transition-colors hover:text-nexa-primary"
+            href="index.html"
+          >
+            <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+            Back
+          </a>
+        </header>
+
+        <div class="flex-grow px-5 py-10 md:px-10 md:py-12">
+          <div class="mx-auto max-w-lg">
+            <div class="mb-10">
+              <h2 class="mb-3 font-display text-3xl font-semibold text-nexa-ink md:text-4xl">Host application</h2>
+              <p class="font-sans text-base leading-relaxed text-nexa-ink-3">
+                Tell us about your property. We’ll review and contact you within 48 hours to begin verification.
+              </p>
+            </div>
+
+            <form class="space-y-8" id="hostForm" novalidate>
+              <div class="space-y-2">
+                <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="fullName"
+                  >Full name</label
+                >
+                <input
+                  class="w-full border-b border-nexa-line bg-transparent px-0 py-3 font-sans text-base text-nexa-ink outline-none transition-colors placeholder:text-nexa-ink-4/50 focus:border-nexa-primary"
+                  id="fullName"
+                  name="fullName"
+                  placeholder="Your full name"
+                  required
+                  type="text"
+                  autocomplete="name"
+                />
+              </div>
+
+              <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+                <div class="space-y-2">
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="phone"
+                    >Phone</label
+                  >
+                  <div
+                    class="flex items-center gap-2 border-b border-nexa-line transition-colors focus-within:border-nexa-primary"
+                  >
+                    <span class="flex items-center gap-1.5 py-3 font-sans text-base text-nexa-ink-2">+212</span>
+                    <input
+                      class="w-full border-none bg-transparent py-3 font-sans text-base text-nexa-ink outline-none focus:ring-0"
+                      id="phone"
+                      name="phone"
+                      placeholder="6 XX XX XX XX"
+                      required
+                      type="tel"
+                      autocomplete="tel"
+                      inputmode="tel"
+                    />
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="email"
+                    >Email</label
+                  >
+                  <input
+                    class="w-full border-b border-nexa-line bg-transparent px-0 py-3 font-sans text-base text-nexa-ink outline-none transition-colors placeholder:text-nexa-ink-4/50 focus:border-nexa-primary"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                    type="email"
+                    autocomplete="email"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="city"
+                  >City in Morocco</label
+                >
+                <div class="relative">
+                  <select
+                    class="w-full appearance-none border-b border-nexa-line bg-transparent px-0 py-3 font-sans text-base text-nexa-ink outline-none transition-colors focus:border-nexa-primary"
+                    id="city"
+                    name="city"
+                    required
+                  >
+                    <option disabled selected value="">Select a city</option>
+                    <option value="Agadir">Agadir</option>
+                    <option value="Casablanca">Casablanca</option>
+                    <option value="Chefchaouen">Chefchaouen</option>
+                    <option value="Essaouira">Essaouira</option>
+                    <option value="Fes">Fes</option>
+                    <option value="Marrakech">Marrakech</option>
+                    <option value="Rabat">Rabat</option>
+                    <option value="Tangier">Tangier</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-nexa-ink-4"
+                    >expand_more</span
+                  >
+                </div>
+              </div>
+
+              <fieldset class="space-y-4">
+                <legend class="text-xs font-semibold uppercase tracking-wider text-nexa-ink-4">Property type</legend>
+                <div class="flex flex-wrap gap-3">
+                  <label class="cursor-pointer">
+                    <input class="peer sr-only" name="propertyType" type="radio" value="APARTMENT" required />
+                    <span
+                      class="block rounded-full border border-nexa-line px-5 py-2.5 text-sm font-medium text-nexa-ink-3 transition-all duration-200 peer-checked:border-nexa-primary peer-checked:bg-nexa-primary peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-nexa-primary/30 hover:border-nexa-primary/50"
+                      >Apartment</span
+                    >
+                  </label>
+                  <label class="cursor-pointer">
+                    <input class="peer sr-only" name="propertyType" type="radio" value="VILLA" />
+                    <span
+                      class="block rounded-full border border-nexa-line px-5 py-2.5 text-sm font-medium text-nexa-ink-3 transition-all duration-200 peer-checked:border-nexa-primary peer-checked:bg-nexa-primary peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-nexa-primary/30 hover:border-nexa-primary/50"
+                      >Villa</span
+                    >
+                  </label>
+                  <label class="cursor-pointer">
+                    <input class="peer sr-only" checked name="propertyType" type="radio" value="RIAD" />
+                    <span
+                      class="block rounded-full border border-nexa-line px-5 py-2.5 text-sm font-medium text-nexa-ink-3 transition-all duration-200 peer-checked:border-nexa-primary peer-checked:bg-nexa-primary peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-nexa-primary/30 hover:border-nexa-primary/50"
+                      >Riad</span
+                    >
+                  </label>
+                  <label class="cursor-pointer">
+                    <input class="peer sr-only" name="propertyType" type="radio" value="HOTEL" />
+                    <span
+                      class="block rounded-full border border-nexa-line px-5 py-2.5 text-sm font-medium text-nexa-ink-3 transition-all duration-200 peer-checked:border-nexa-primary peer-checked:bg-nexa-primary peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-nexa-primary/30 hover:border-nexa-primary/50"
+                      >Hotel</span
+                    >
+                  </label>
+                  <label class="cursor-pointer">
+                    <input class="peer sr-only" name="propertyType" type="radio" value="HOSTEL" />
+                    <span
+                      class="block rounded-full border border-nexa-line px-5 py-2.5 text-sm font-medium text-nexa-ink-3 transition-all duration-200 peer-checked:border-nexa-primary peer-checked:bg-nexa-primary peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-nexa-primary/30 hover:border-nexa-primary/50"
+                      >Hostel</span
+                    >
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="space-y-2">
+                <label
+                  class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4"
+                  for="propertyCount"
+                  >Number of properties</label
+                >
+                <input
+                  class="w-full border-b border-nexa-line bg-transparent px-0 py-3 font-sans text-base text-nexa-ink outline-none transition-colors focus:border-nexa-primary"
+                  id="propertyCount"
+                  min="1"
+                  max="50"
+                  name="propertyCount"
+                  placeholder="1"
+                  required
+                  type="number"
+                  value="1"
+                />
+              </div>
+
+              <div class="space-y-2">
+                <label
+                  class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4"
+                  for="propertyDetails"
+                  >Property details</label
+                >
+                <textarea
+                  class="w-full resize-none rounded-md border border-nexa-line bg-nexa-bg-2 p-4 font-sans text-sm text-nexa-ink outline-none transition-all focus:border-nexa-primary focus:ring-2 focus:ring-nexa-primary/20"
+                  id="propertyDetails"
+                  name="propertyDetails"
+                  placeholder="Share a website, Instagram, or a short description of your property…"
+                  rows="4"
+                ></textarea>
+              </div>
+
+              <p id="formError" class="hidden text-sm font-medium text-nexa-primary" role="alert"></p>
+
+              <div class="pt-2">
+                <button
+                  class="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-md bg-nexa-primary py-4 font-sans text-sm font-bold uppercase tracking-widest text-white shadow-cta transition-all duration-300 hover:-translate-y-0.5 hover:bg-nexa-primary-dark disabled:pointer-events-none disabled:opacity-60"
+                  id="submitBtn"
+                  type="submit"
+                >
+                  Submit application
+                </button>
+              </div>
+            </form>
+
+            <footer class="mt-12 border-t border-nexa-line pt-8 text-center">
+              <p class="flex flex-wrap items-center justify-center gap-1.5 text-xs text-nexa-ink-4">
+                <span class="material-symbols-outlined icon-fill text-[16px] text-nexa-primary/70">shield_with_heart</span>
+                We’ll only use this to review your host application.
+              </p>
+            </footer>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Success modal -->
+    <div
+      class="pointer-events-none fixed inset-0 z-[1100] flex items-center justify-center p-5 opacity-0 transition-opacity duration-300"
+      id="successModal"
+      aria-hidden="true"
+    >
+      <div class="absolute inset-0 bg-nexa-ink/40 backdrop-blur-md" data-close-modal></div>
+      <div
+        class="relative w-full max-w-md rounded-xl bg-white p-8 text-center shadow-nexa-lg sm:p-10"
+        role="dialog"
+        aria-labelledby="successTitle"
+        aria-modal="true"
+      >
+        <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-nexa-primary-soft text-nexa-primary">
+          <span class="material-symbols-outlined text-3xl">check</span>
+        </div>
+        <h2 class="mb-3 font-display text-2xl font-semibold text-nexa-ink" id="successTitle">Application received</h2>
+        <p class="mb-8 text-sm leading-relaxed text-nexa-ink-3">
+          Thank you. Our hospitality team will review your application and reach out within 48 hours.
+        </p>
+        <button
+          class="min-h-[48px] w-full rounded-md bg-nexa-primary py-3.5 font-sans text-sm font-bold uppercase tracking-widest text-white shadow-cta transition-colors hover:bg-nexa-primary-dark"
+          type="button"
+          data-close-modal
+        >
+          Done
+        </button>
+      </div>
+    </div>
+
+    <script src="js/apply.js"></script>
+  </body>
+</html>

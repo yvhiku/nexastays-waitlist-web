@@ -1,0 +1,10 @@
+{
+  "name": "nexastays-waitlist-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Nexa Stays founding-host waitlist landing (static)",
+  "scripts": {
+    "dev": "npx --yes serve -l 3080 .",
+    "start": "npx --yes serve -l 3080 ."
+  }
+}
