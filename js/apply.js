@@ -51,18 +51,26 @@
     e.preventDefault();
     clearError();
 
+    const data = new FormData(form);
+    const city = String(data.get("city") || "").trim();
+
+    if (!city) {
+      showError("Please select a city.");
+      document.getElementById("cityTrigger")?.focus();
+      return;
+    }
+
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
 
-    const data = new FormData(form);
     const phoneRaw = String(data.get("phone") || "").replace(/\s+/g, "");
     const payload = {
       fullName: String(data.get("fullName") || "").trim(),
       phone: phoneRaw.startsWith("+") ? phoneRaw : `+212${phoneRaw.replace(/^0+/, "")}`,
       email: String(data.get("email") || "").trim().toLowerCase(),
-      city: String(data.get("city") || ""),
+      city,
       propertyType: String(data.get("propertyType") || ""),
       propertyCount: Number(data.get("propertyCount") || 1),
       propertyDetails: String(data.get("propertyDetails") || "").trim(),
@@ -75,7 +83,6 @@
       '<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span> Submitting…';
 
     try {
-      // Hook for a real API later: POST /api/waitlist or Formspree/etc.
       const endpoint = window.NEXA_WAITLIST_ENDPOINT;
       if (endpoint) {
         const res = await fetch(endpoint, {
@@ -89,6 +96,7 @@
         saveLocally(payload);
       }
       form.reset();
+      window.NexaCitySelect?.reset();
       const riad = form.querySelector('input[name="propertyType"][value="RIAD"]');
       if (riad) riad.checked = true;
       openModal();

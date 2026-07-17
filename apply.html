@@ -200,31 +200,35 @@
               </div>
 
               <div class="space-y-2">
-                <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="city"
-                  >City in Morocco</label
+                <span class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" id="cityLabel"
+                  >City in Morocco</span
                 >
-                <div class="relative">
-                  <select
-                    class="w-full appearance-none border-b border-nexa-line bg-transparent px-0 py-3 font-sans text-base text-nexa-ink outline-none transition-colors focus:border-nexa-primary"
-                    id="city"
-                    name="city"
-                    required
+                <div class="relative" id="citySelect" data-nexa-select>
+                  <input id="city" name="city" type="hidden" value="" required />
+                  <button
+                    type="button"
+                    id="cityTrigger"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    aria-labelledby="cityLabel"
+                    class="flex min-h-[48px] w-full items-center gap-2 rounded-full border border-nexa-line bg-white px-4 py-2.5 text-left font-sans text-sm text-nexa-ink shadow-sm outline-none transition-colors hover:border-nexa-primary/40 focus-visible:border-nexa-primary focus-visible:ring-2 focus-visible:ring-nexa-primary/20"
                   >
-                    <option disabled selected value="">Select a city</option>
-                    <option value="Agadir">Agadir</option>
-                    <option value="Casablanca">Casablanca</option>
-                    <option value="Chefchaouen">Chefchaouen</option>
-                    <option value="Essaouira">Essaouira</option>
-                    <option value="Fes">Fes</option>
-                    <option value="Marrakech">Marrakech</option>
-                    <option value="Rabat">Rabat</option>
-                    <option value="Tangier">Tangier</option>
-                    <option value="Other">Other</option>
-                  </select>
-                  <span
-                    class="material-symbols-outlined pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-nexa-ink-4"
-                    >expand_more</span
+                    <span class="flex-1 truncate text-nexa-ink-4" id="cityTriggerLabel">Select a city</span>
+                    <span
+                      class="material-symbols-outlined shrink-0 text-[20px] text-nexa-ink-4 transition-transform"
+                      id="cityChevron"
+                      aria-hidden="true"
+                      >expand_more</span
+                    >
+                  </button>
+                  <ul
+                    id="cityList"
+                    role="listbox"
+                    aria-labelledby="cityLabel"
+                    class="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-50 hidden max-h-64 min-w-full overflow-y-auto rounded-2xl border border-nexa-line bg-white py-1.5 shadow-nexa-lg"
                   >
+                    <!-- filled by js/city-select.js -->
+                  </ul>
                 </div>
               </div>
 
@@ -357,6 +361,7 @@
       </div>
     </div>
 
+    <script src="js/city-select.js"></script>
     <script src="js/apply.js"></script>
   </body>
 </html>
