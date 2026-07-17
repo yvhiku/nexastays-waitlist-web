@@ -61,26 +61,76 @@
     <link rel="stylesheet" href="css/nexa.css" />
   </head>
   <body class="overflow-x-hidden bg-nexa-bg font-sans text-nexa-ink antialiased">
-    <main class="flex min-h-screen flex-col md:flex-row">
-      <!-- Brand panel -->
-      <section class="relative h-72 w-full overflow-hidden md:h-screen md:w-1/2 lg:w-3/5">
+    <!-- Mobile top bar (desktop uses form-column header) -->
+    <header
+      class="sticky top-0 z-30 flex items-center justify-between border-b border-nexa-line/50 bg-nexa-bg/95 px-4 py-3 backdrop-blur-md md:hidden"
+    >
+      <a class="flex min-w-0 items-center gap-2" href="index.html">
+        <img alt="Nexa Stays" class="h-7 w-7 shrink-0 object-contain" src="assets/nexastays.png" width="28" height="28" />
+        <span class="font-display text-lg font-bold tracking-tight">
+          <span class="text-nexa-ink">Nexa</span>
+          <span class="text-nexa-primary">Stays</span>
+        </span>
+      </a>
+      <a
+        class="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 font-sans text-sm font-semibold text-nexa-ink-2"
+        href="index.html"
+      >
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+        Back
+      </a>
+    </header>
+
+    <main class="flex min-h-[100dvh] flex-col md:flex-row md:min-h-screen">
+      <!-- Brand panel: compact auto-height on mobile, full sidebar on md+ -->
+      <section
+        class="relative w-full shrink-0 overflow-hidden md:h-screen md:w-1/2 md:sticky md:top-0 lg:w-3/5"
+      >
         <img
           alt=""
           class="absolute inset-0 h-full w-full object-cover"
           src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-nexa-ink/75 via-nexa-ink/30 to-transparent"></div>
-        <div class="absolute inset-0 flex items-center justify-center p-5 md:p-16">
-          <div class="glass-card nexa-fade-up max-w-xl rounded-xl p-8 text-white md:p-12">
-            <h1 class="mb-5 font-display text-3xl font-bold leading-tight md:text-5xl">
+        <div class="absolute inset-0 bg-gradient-to-t from-nexa-ink/85 via-nexa-ink/45 to-nexa-ink/25 md:from-nexa-ink/75 md:via-nexa-ink/30 md:to-transparent"></div>
+
+        <!-- Mobile compact promo -->
+        <div class="relative z-10 px-4 py-6 text-white md:hidden">
+          <p class="font-sans text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-nexa-primary-light">
+            Founding hosts · first 100
+          </p>
+          <p class="mt-2 font-sans text-base leading-snug text-white/95">
+            Enjoy
+            <span class="font-semibold text-nexa-primary-light">0% commission</span>
+            for your first 3 months.
+          </p>
+          <ul class="mt-4 space-y-2.5">
+            <li class="flex items-start gap-2.5 text-sm text-white/85">
+              <span class="material-symbols-outlined icon-fill mt-0.5 shrink-0 text-[18px] text-nexa-primary-light">verified</span>
+              <span>Priority verification within 48 hours</span>
+            </li>
+            <li class="flex items-start gap-2.5 text-sm text-white/85">
+              <span class="material-symbols-outlined icon-fill mt-0.5 shrink-0 text-[18px] text-nexa-primary-light">stars</span>
+              <span>Featured launch placement</span>
+            </li>
+            <li class="flex items-start gap-2.5 text-sm text-white/85">
+              <span class="material-symbols-outlined icon-fill mt-0.5 shrink-0 text-[18px] text-nexa-primary-light">support_agent</span>
+              <span>Dedicated listing support</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Desktop glass card -->
+        <div class="absolute inset-0 z-10 hidden items-center justify-center p-10 lg:p-16 md:flex">
+          <div class="glass-card nexa-fade-up w-full max-w-xl rounded-xl p-8 text-white md:p-10 lg:p-12">
+            <h1 class="mb-5 font-display text-4xl font-bold leading-tight lg:text-5xl">
               Become a Founding Host
             </h1>
-            <p class="mb-8 font-sans text-base leading-relaxed text-white/90 md:text-lg">
+            <p class="mb-8 font-sans text-base leading-relaxed text-white/90 lg:text-lg">
               Join the first 100 hosts and enjoy
               <span class="font-semibold text-nexa-primary-light">0% commission</span>
               for your first 3 months.
             </p>
-            <ul class="mb-10 space-y-5">
+            <ul class="mb-8 space-y-5 lg:mb-10">
               <li class="flex items-start gap-3">
                 <span class="material-symbols-outlined icon-fill text-nexa-primary-light">verified</span>
                 <div>
@@ -116,10 +166,10 @@
         </div>
       </section>
 
-      <!-- Form -->
-      <section class="custom-scrollbar flex w-full flex-col overflow-y-auto bg-nexa-bg md:w-1/2 md:h-screen lg:w-2/5">
+      <!-- Form column -->
+      <section class="custom-scrollbar flex w-full min-w-0 flex-1 flex-col bg-nexa-bg md:h-screen md:w-1/2 md:overflow-y-auto lg:w-2/5">
         <header
-          class="sticky top-0 z-20 flex items-center justify-between border-b border-nexa-line/40 bg-nexa-bg/90 px-5 py-5 backdrop-blur-md md:px-10"
+          class="sticky top-0 z-20 hidden items-center justify-between border-b border-nexa-line/40 bg-nexa-bg/90 px-6 py-5 backdrop-blur-md md:flex lg:px-10"
         >
           <a class="flex items-center gap-2" href="index.html">
             <img alt="Nexa Stays" class="h-8 w-8 object-contain" src="assets/nexastays.png" width="32" height="32" />
@@ -137,16 +187,18 @@
           </a>
         </header>
 
-        <div class="flex-grow px-5 py-10 md:px-10 md:py-12">
-          <div class="mx-auto max-w-lg">
-            <div class="mb-10">
-              <h2 class="mb-3 font-display text-3xl font-semibold text-nexa-ink md:text-4xl">Host application</h2>
-              <p class="font-sans text-base leading-relaxed text-nexa-ink-3">
+        <div class="flex-grow px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-10">
+          <div class="mx-auto w-full max-w-lg">
+            <div class="mb-8 sm:mb-10">
+              <h2 class="mb-2 font-display text-2xl font-semibold text-nexa-ink sm:text-3xl md:mb-3 md:text-4xl">
+                Host application
+              </h2>
+              <p class="font-sans text-sm leading-relaxed text-nexa-ink-3 sm:text-base">
                 Tell us about your property. We’ll review and contact you within 48 hours to begin verification.
               </p>
             </div>
 
-            <form class="space-y-8" id="hostForm" novalidate>
+            <form class="space-y-7 sm:space-y-8" id="hostForm" novalidate>
               <div class="space-y-2">
                 <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="fullName"
                   >Full name</label
@@ -162,7 +214,7 @@
                 />
               </div>
 
-              <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+              <div class="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
                 <div class="space-y-2">
                   <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="phone"
                     >Phone</label
@@ -225,7 +277,7 @@
                     id="cityList"
                     role="listbox"
                     aria-labelledby="cityLabel"
-                    class="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-50 hidden max-h-64 min-w-full overflow-y-auto rounded-2xl border border-nexa-line bg-white py-1.5 shadow-nexa-lg"
+                    class="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-50 hidden max-h-[min(16rem,50dvh)] min-w-full overflow-y-auto rounded-2xl border border-nexa-line bg-white py-1.5 shadow-nexa-lg"
                   >
                     <!-- filled by js/city-select.js -->
                   </ul>
@@ -320,8 +372,8 @@
               </div>
             </form>
 
-            <footer class="mt-12 border-t border-nexa-line pt-8 text-center">
-              <p class="flex flex-wrap items-center justify-center gap-1.5 text-xs text-nexa-ink-4">
+            <footer class="mt-10 border-t border-nexa-line px-1 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-6 text-center sm:mt-12 sm:pt-8">
+              <p class="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-xs leading-relaxed text-nexa-ink-4">
                 <span class="material-symbols-outlined icon-fill text-[16px] text-nexa-primary/70">shield_with_heart</span>
                 We’ll only use this to review your host application. See our
                 <a
@@ -358,7 +410,7 @@
     >
       <div class="absolute inset-0 bg-nexa-ink/40 backdrop-blur-md" data-close-modal></div>
       <div
-        class="relative w-full max-w-md rounded-xl bg-white p-8 text-center shadow-nexa-lg sm:p-10"
+        class="relative w-full max-w-md rounded-xl bg-white p-6 text-center shadow-nexa-lg sm:p-10"
         role="dialog"
         aria-labelledby="successTitle"
         aria-modal="true"

@@ -63,19 +63,19 @@
     </script>
     <link rel="stylesheet" href="css/nexa.css" />
   </head>
-  <body class="bg-nexa-bg text-nexa-ink font-sans antialiased selection:bg-nexa-primary selection:text-white">
+  <body class="overflow-x-hidden bg-nexa-bg text-nexa-ink font-sans antialiased selection:bg-nexa-primary selection:text-white">
     <!-- Nav -->
     <nav class="fixed top-0 z-[1100] w-full nexa-glass">
-      <div class="mx-auto flex max-w-container items-center justify-between px-5 py-4 md:px-16">
-        <a class="group flex items-center gap-2" href="index.html">
+      <div class="mx-auto flex max-w-container items-center justify-between gap-3 px-4 py-3 sm:px-5 sm:py-4 md:px-16">
+        <a class="group flex min-w-0 items-center gap-2" href="index.html">
           <img
             alt="Nexa Stays"
-            class="h-8 w-8 object-contain"
+            class="h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8"
             src="assets/nexastays.png"
             width="32"
             height="32"
           />
-          <span class="font-display text-xl font-bold tracking-tight sm:text-2xl">
+          <span class="truncate font-display text-lg font-bold tracking-tight sm:text-xl md:text-2xl">
             <span class="text-nexa-ink">Nexa</span>
             <span class="text-nexa-primary">Stays</span>
           </span>
@@ -86,16 +86,17 @@
           <a class="font-sans text-sm font-medium text-nexa-ink-3 transition-colors duration-300 hover:text-nexa-primary" href="#apply">Apply</a>
         </div>
         <a
-          class="inline-flex min-h-[44px] items-center rounded-md bg-nexa-primary px-5 py-2.5 font-sans text-sm font-semibold text-white shadow-cta transition-all duration-300 hover:bg-nexa-primary-dark hover:-translate-y-px"
+          class="inline-flex min-h-[44px] shrink-0 items-center rounded-md bg-nexa-primary px-3.5 py-2.5 font-sans text-sm font-semibold text-white shadow-cta transition-all duration-300 hover:bg-nexa-primary-dark hover:-translate-y-px sm:px-5"
           href="apply.html"
         >
-          Become a Host
+          <span class="sm:hidden">Apply</span>
+          <span class="hidden sm:inline">Become a Host</span>
         </a>
       </div>
     </nav>
 
     <!-- Hero: one composition — brand, headline, support, CTAs, full-bleed image -->
-    <header class="relative flex min-h-[88vh] items-center justify-center overflow-hidden pb-16 pt-28">
+    <header class="relative flex min-h-[min(88vh,100dvh)] items-center justify-center overflow-hidden px-4 pb-12 pt-24 sm:px-5 sm:pb-16 sm:pt-28">
       <div class="absolute inset-0 z-0">
         <img
           alt=""
@@ -104,26 +105,26 @@
         />
         <div class="absolute inset-0 bg-gradient-to-t from-nexa-ink/70 via-nexa-ink/25 to-nexa-ink/10"></div>
       </div>
-      <div class="relative z-10 mx-auto w-full max-w-container px-5 text-center text-white md:px-16">
-        <p class="nexa-fade-up mb-6 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-white/90">
+      <div class="relative z-10 mx-auto w-full max-w-container px-1 text-center text-white sm:px-5 md:px-16">
+        <p class="nexa-fade-up mb-4 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-white/90 sm:mb-6 sm:text-xs sm:tracking-[0.14em]">
           Founding hosts · 0% commission for 3 months
         </p>
-        <h1 class="nexa-fade-up font-display text-4xl font-bold leading-tight drop-shadow-sm md:text-6xl md:leading-[1.1]">
+        <h1 class="nexa-fade-up font-display text-[1.85rem] font-bold leading-[1.15] drop-shadow-sm sm:text-4xl md:text-6xl md:leading-[1.1]">
           Turn your property into a<br class="hidden md:block" />
           trusted travel experience
         </h1>
-        <p class="nexa-fade-up-delay mx-auto mt-6 max-w-2xl font-sans text-lg font-light leading-relaxed text-white/95 md:text-xl">
+        <p class="nexa-fade-up-delay mx-auto mt-4 max-w-2xl font-sans text-base font-light leading-relaxed text-white/95 sm:mt-6 sm:text-lg md:text-xl">
           Join Morocco’s verified short-stay marketplace — safety, transparency, and hospitality built for hosts and guests.
         </p>
-        <div class="nexa-fade-up-delay mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
+        <div class="nexa-fade-up-delay mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-5">
           <a
-            class="inline-flex min-h-[48px] w-full items-center justify-center rounded-md bg-nexa-primary px-10 py-4 font-sans text-base font-semibold text-white shadow-cta transition-all duration-300 hover:-translate-y-0.5 hover:bg-nexa-primary-dark sm:w-auto"
+            class="inline-flex min-h-[48px] w-full max-w-sm items-center justify-center rounded-md bg-nexa-primary px-8 py-3.5 font-sans text-base font-semibold text-white shadow-cta transition-all duration-300 hover:-translate-y-0.5 hover:bg-nexa-primary-dark sm:w-auto sm:px-10 sm:py-4"
             href="apply.html"
           >
             Become a Nexa Host
           </a>
           <a
-            class="inline-flex min-h-[48px] w-full items-center justify-center rounded-md border border-white/40 bg-white/10 px-10 py-4 font-sans text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20 sm:w-auto"
+            class="inline-flex min-h-[48px] w-full max-w-sm items-center justify-center rounded-md border border-white/40 bg-white/10 px-8 py-3.5 font-sans text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20 sm:w-auto sm:px-10 sm:py-4"
             href="#how-it-works"
           >
             See how it works
@@ -133,10 +134,10 @@
     </header>
 
     <!-- Why Host -->
-    <section class="bg-nexa-bg py-20" id="why-host">
-      <div class="mx-auto max-w-container px-5 md:px-16">
-        <div class="mb-12 max-w-2xl">
-          <h2 class="font-display text-3xl font-semibold text-nexa-ink md:text-4xl">Why host with Nexa</h2>
+    <section class="bg-nexa-bg py-14 sm:py-20" id="why-host">
+      <div class="mx-auto max-w-container px-4 sm:px-5 md:px-16">
+        <div class="mb-10 max-w-2xl sm:mb-12">
+          <h2 class="font-display text-2xl font-semibold text-nexa-ink sm:text-3xl md:text-4xl">Why host with Nexa</h2>
           <p class="mt-3 font-sans text-base text-nexa-ink-3 md:text-lg">
             Built for Moroccan properties that want clearer trust signals and cleaner guest journeys.
           </p>
@@ -174,10 +175,10 @@
     </section>
 
     <!-- How it works -->
-    <section class="border-y border-nexa-line/60 bg-nexa-bg-2 py-20" id="how-it-works">
-      <div class="mx-auto max-w-container px-5 md:px-16">
-        <div class="mb-12 max-w-2xl">
-          <h2 class="font-display text-3xl font-semibold text-nexa-ink md:text-4xl">How it works</h2>
+    <section class="border-y border-nexa-line/60 bg-nexa-bg-2 py-14 sm:py-20" id="how-it-works">
+      <div class="mx-auto max-w-container px-4 sm:px-5 md:px-16">
+        <div class="mb-10 max-w-2xl sm:mb-12">
+          <h2 class="font-display text-2xl font-semibold text-nexa-ink sm:text-3xl md:text-4xl">How it works</h2>
           <p class="mt-3 font-sans text-base text-nexa-ink-3 md:text-lg">
             From application to live listing — designed around verification, not guesswork.
           </p>
@@ -209,9 +210,9 @@
     </section>
 
     <!-- Apply CTA -->
-    <section class="bg-nexa-bg py-20" id="apply">
-      <div class="mx-auto max-w-container px-5 md:px-16">
-        <div class="overflow-hidden rounded-xl bg-gradient-to-br from-nexa-ink to-nexa-ink-2 p-8 text-white shadow-nexa-lg sm:p-12 md:p-14">
+    <section class="bg-nexa-bg py-14 sm:py-20" id="apply">
+      <div class="mx-auto max-w-container px-4 sm:px-5 md:px-16">
+        <div class="overflow-hidden rounded-xl bg-gradient-to-br from-nexa-ink to-nexa-ink-2 p-6 text-white shadow-nexa-lg sm:p-12 md:p-14">
           <div class="max-w-2xl">
             <h2 class="font-display text-3xl font-semibold md:text-4xl">Ready to join the founding hosts?</h2>
             <p class="mt-4 font-sans text-base text-white/75 md:text-lg">
@@ -229,8 +230,8 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-nexa-line bg-nexa-bg-2 pb-10 pt-16">
-      <div class="mx-auto grid max-w-container grid-cols-1 gap-10 px-5 md:grid-cols-4 md:gap-8 md:px-16">
+    <footer class="border-t border-nexa-line bg-nexa-bg-2 pb-10 pt-12 sm:pt-16">
+      <div class="mx-auto grid max-w-container grid-cols-1 gap-10 px-4 sm:px-5 md:grid-cols-4 md:gap-8 md:px-16">
         <div class="md:col-span-1">
           <div class="mb-4 flex items-center gap-2">
             <img alt="" class="h-6 w-6" src="assets/nexastays.png" width="24" height="24" />
