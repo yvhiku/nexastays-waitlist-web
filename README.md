@@ -51,3 +51,11 @@ Override the endpoint before scripts load if needed:
 ## Brand assets
 
 Logo: `assets/nexastays.png` (synced from `nexastays_web/public/images/nexastays.png`).
+
+## Vercel Web Analytics
+
+This is a **static HTML** site (not Next.js). Tracking uses Vercel’s HTML snippet on `index.html` and `apply.html` (`/_vercel/insights/script.js`).
+
+1. In the Vercel project, open **Analytics** and click **Enable**.
+2. Redeploy after enabling so the insights routes are available.
+3. Visit the live site and navigate between pages; page views should appear within ~30s (disable content blockers when testing).
