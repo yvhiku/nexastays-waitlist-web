@@ -15,6 +15,8 @@ Static landing for **founding host** acquisition. Visual system matches [`docs/N
 
 EN / FR / AR via the header language switcher (`js/i18n.js`). Choice is stored in `localStorage` (`nexa_waitlist_lang`). Arabic uses RTL layout and IBM Plex Sans Arabic. Legal links follow the locale (`/en`, `/fr`, `/ar` on nexastays.ma).
 
+Messaging hierarchy: **Founding Host Program** first, limited to 100 hosts, with **0% commission for 3 months** as the exclusive reward—not the primary headline.
+
 ## Run locally
 
 ```bash
