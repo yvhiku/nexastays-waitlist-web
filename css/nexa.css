@@ -84,3 +84,87 @@ h4,
 .nexa-fade-up-delay {
   animation: nexa-fade-up 0.7s ease-out 0.12s both;
 }
+
+/* Language switcher */
+.nexa-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.15rem;
+  border-radius: 999px;
+  border: 1px solid rgba(237, 224, 229, 0.9);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.nexa-lang button {
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0.2rem 0.45rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #6b5460;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nexa-lang button:hover {
+  color: #e8507a;
+}
+
+.nexa-lang button.is-active {
+  background: #e8507a;
+  color: #fff;
+}
+
+.nexa-lang-on-dark {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(26, 17, 24, 0.35);
+}
+
+.nexa-lang-on-dark button {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.nexa-lang-on-dark button:hover {
+  color: #fff;
+}
+
+.nexa-lang-on-dark button.is-active {
+  background: #e8507a;
+  color: #fff;
+}
+
+/* Arabic / RTL */
+html[dir="rtl"] body {
+  font-family: "IBM Plex Sans Arabic", "DM Sans", system-ui, sans-serif;
+}
+
+html[dir="rtl"] .font-display,
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4 {
+  font-family: "IBM Plex Sans Arabic", "Playfair Display", Georgia, serif;
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] .nexa-lang button {
+  font-family: "IBM Plex Sans Arabic", "DM Sans", system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] .i18n-back {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] .tracking-widest,
+html[dir="rtl"] .tracking-wider,
+html[dir="rtl"] .tracking-\[0\.12em\],
+html[dir="rtl"] .tracking-\[0\.14em\] {
+  letter-spacing: 0.02em;
+}

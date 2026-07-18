@@ -9,9 +9,20 @@
       content="Apply to become a founding Nexa Stays host in Morocco. 0% commission for the first 3 months."
     />
     <link rel="icon" href="assets/nexastays.png" type="image/png" />
+    <script>
+      (function () {
+        try {
+          var l = localStorage.getItem("nexa_waitlist_lang");
+          if (l === "ar" || l === "fr" || l === "en") {
+            document.documentElement.lang = l;
+            document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+          }
+        } catch (e) {}
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -59,11 +70,16 @@
       };
     </script>
     <link rel="stylesheet" href="css/nexa.css" />
+    <script src="js/i18n.js" defer></script>
   </head>
-  <body class="overflow-x-hidden bg-nexa-bg font-sans text-nexa-ink antialiased">
-    <!-- Mobile top bar (desktop uses form-column header) -->
+  <body
+    class="overflow-x-hidden bg-nexa-bg font-sans text-nexa-ink antialiased"
+    data-i18n-title="meta.applyTitle"
+    data-i18n-desc="meta.applyDesc"
+  >
+    <!-- Mobile top bar -->
     <header
-      class="sticky top-0 z-30 flex items-center justify-between border-b border-nexa-line/50 bg-nexa-bg/95 px-4 py-3 backdrop-blur-md md:hidden"
+      class="sticky top-0 z-30 flex items-center justify-between gap-2 border-b border-nexa-line/50 bg-nexa-bg/95 px-4 py-3 backdrop-blur-md md:hidden"
     >
       <a class="flex min-w-0 items-center gap-2" href="index.html">
         <img alt="Nexa Stays" class="h-7 w-7 shrink-0 object-contain" src="assets/nexastays.png" width="28" height="28" />
@@ -72,17 +88,24 @@
           <span class="text-nexa-primary">Stays</span>
         </span>
       </a>
-      <a
-        class="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 font-sans text-sm font-semibold text-nexa-ink-2"
-        href="index.html"
-      >
-        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
-        Back
-      </a>
+      <div class="flex shrink-0 items-center gap-2">
+        <div class="nexa-lang" role="group" data-i18n-aria="nav.lang" aria-label="Language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+          <button type="button" data-lang="ar" aria-pressed="false">ع</button>
+        </div>
+        <a
+          class="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 font-sans text-sm font-semibold text-nexa-ink-2"
+          href="index.html"
+        >
+          <span class="material-symbols-outlined i18n-back text-[20px]">arrow_back</span>
+          <span data-i18n="nav.back">Back</span>
+        </a>
+      </div>
     </header>
 
     <main class="flex min-h-[100dvh] flex-col md:flex-row md:min-h-screen">
-      <!-- Brand panel: compact auto-height on mobile, full sidebar on md+ -->
+      <!-- Brand panel -->
       <section
         class="relative w-full shrink-0 overflow-hidden md:h-screen md:w-1/2 md:sticky md:top-0 lg:w-3/5"
       >
@@ -95,26 +118,26 @@
 
         <!-- Mobile compact promo -->
         <div class="relative z-10 px-4 py-6 text-white md:hidden">
-          <p class="font-sans text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-nexa-primary-light">
+          <p class="font-sans text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-nexa-primary-light" data-i18n="apply.mobileEyebrow">
             Founding hosts · first 100
           </p>
           <p class="mt-2 font-sans text-base leading-snug text-white/95">
-            Enjoy
-            <span class="font-semibold text-nexa-primary-light">0% commission</span>
-            for your first 3 months.
+            <span data-i18n="apply.mobilePromoBefore">Enjoy</span>
+            <span class="font-semibold text-nexa-primary-light" data-i18n="apply.mobilePromoHighlight">0% commission</span>
+            <span data-i18n="apply.mobilePromoAfter">for your first 3 months.</span>
           </p>
           <ul class="mt-4 space-y-2.5">
             <li class="flex items-start gap-2.5 text-sm text-white/85">
               <span class="material-symbols-outlined icon-fill mt-0.5 shrink-0 text-[18px] text-nexa-primary-light">verified</span>
-              <span>Priority verification within 48 hours</span>
+              <span data-i18n="apply.mobileBenefit1">Priority verification within 48 hours</span>
             </li>
             <li class="flex items-start gap-2.5 text-sm text-white/85">
               <span class="material-symbols-outlined icon-fill mt-0.5 shrink-0 text-[18px] text-nexa-primary-light">stars</span>
-              <span>Featured launch placement</span>
+              <span data-i18n="apply.mobileBenefit2">Featured launch placement</span>
             </li>
             <li class="flex items-start gap-2.5 text-sm text-white/85">
               <span class="material-symbols-outlined icon-fill mt-0.5 shrink-0 text-[18px] text-nexa-primary-light">support_agent</span>
-              <span>Dedicated listing support</span>
+              <span data-i18n="apply.mobileBenefit3">Dedicated listing support</span>
             </li>
           </ul>
         </div>
@@ -122,44 +145,44 @@
         <!-- Desktop glass card -->
         <div class="absolute inset-0 z-10 hidden items-center justify-center p-10 lg:p-16 md:flex">
           <div class="glass-card nexa-fade-up w-full max-w-xl rounded-xl p-8 text-white md:p-10 lg:p-12">
-            <h1 class="mb-5 font-display text-4xl font-bold leading-tight lg:text-5xl">
+            <h1 class="mb-5 font-display text-4xl font-bold leading-tight lg:text-5xl" data-i18n="apply.deskTitle">
               Become a Founding Host
             </h1>
             <p class="mb-8 font-sans text-base leading-relaxed text-white/90 lg:text-lg">
-              Join the first 100 hosts and enjoy
-              <span class="font-semibold text-nexa-primary-light">0% commission</span>
-              for your first 3 months.
+              <span data-i18n="apply.deskIntroBefore">Join the first 100 hosts and enjoy</span>
+              <span class="font-semibold text-nexa-primary-light" data-i18n="apply.deskIntroHighlight">0% commission</span>
+              <span data-i18n="apply.deskIntroAfter">for your first 3 months.</span>
             </p>
             <ul class="mb-8 space-y-5 lg:mb-10">
               <li class="flex items-start gap-3">
                 <span class="material-symbols-outlined icon-fill text-nexa-primary-light">verified</span>
                 <div>
-                  <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-white">
+                  <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-white" data-i18n="apply.benefit1Title">
                     Priority verification
                   </h3>
-                  <p class="mt-1 text-sm text-white/70">Reviewed by our team within 48 hours.</p>
+                  <p class="mt-1 text-sm text-white/70" data-i18n="apply.benefit1Body">Reviewed by our team within 48 hours.</p>
                 </div>
               </li>
               <li class="flex items-start gap-3">
                 <span class="material-symbols-outlined icon-fill text-nexa-primary-light">stars</span>
                 <div>
-                  <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-white">
+                  <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-white" data-i18n="apply.benefit2Title">
                     Featured launch placement
                   </h3>
-                  <p class="mt-1 text-sm text-white/70">Founding hosts get early visibility on Nexa Stays.</p>
+                  <p class="mt-1 text-sm text-white/70" data-i18n="apply.benefit2Body">Founding hosts get early visibility on Nexa Stays.</p>
                 </div>
               </li>
               <li class="flex items-start gap-3">
                 <span class="material-symbols-outlined icon-fill text-nexa-primary-light">support_agent</span>
                 <div>
-                  <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-white">
+                  <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-white" data-i18n="apply.benefit3Title">
                     Dedicated support
                   </h3>
-                  <p class="mt-1 text-sm text-white/70">Help with listing quality, photos, and go-live.</p>
+                  <p class="mt-1 text-sm text-white/70" data-i18n="apply.benefit3Body">Help with listing quality, photos, and go-live.</p>
                 </div>
               </li>
             </ul>
-            <p class="font-sans text-xs font-semibold uppercase tracking-widest text-white/75">
+            <p class="font-sans text-xs font-semibold uppercase tracking-widest text-white/75" data-i18n="apply.deskFooter">
               Limited founding cohort · first 100 hosts
             </p>
           </div>
@@ -169,7 +192,7 @@
       <!-- Form column -->
       <section class="custom-scrollbar flex w-full min-w-0 flex-1 flex-col bg-nexa-bg md:h-screen md:w-1/2 md:overflow-y-auto lg:w-2/5">
         <header
-          class="sticky top-0 z-20 hidden items-center justify-between border-b border-nexa-line/40 bg-nexa-bg/90 px-6 py-5 backdrop-blur-md md:flex lg:px-10"
+          class="sticky top-0 z-20 hidden items-center justify-between gap-3 border-b border-nexa-line/40 bg-nexa-bg/90 px-6 py-5 backdrop-blur-md md:flex lg:px-10"
         >
           <a class="flex items-center gap-2" href="index.html">
             <img alt="Nexa Stays" class="h-8 w-8 object-contain" src="assets/nexastays.png" width="32" height="32" />
@@ -178,29 +201,36 @@
               <span class="text-nexa-primary">Stays</span>
             </span>
           </a>
-          <a
-            class="inline-flex min-h-[44px] items-center gap-2 font-sans text-sm font-semibold text-nexa-ink-2 transition-colors hover:text-nexa-primary"
-            href="index.html"
-          >
-            <span class="material-symbols-outlined text-[20px]">arrow_back</span>
-            Back
-          </a>
+          <div class="flex items-center gap-3">
+            <div class="nexa-lang" role="group" data-i18n-aria="nav.lang" aria-label="Language">
+              <button type="button" data-lang="en" aria-pressed="true">EN</button>
+              <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+              <button type="button" data-lang="ar" aria-pressed="false">ع</button>
+            </div>
+            <a
+              class="inline-flex min-h-[44px] items-center gap-2 font-sans text-sm font-semibold text-nexa-ink-2 transition-colors hover:text-nexa-primary"
+              href="index.html"
+            >
+              <span class="material-symbols-outlined i18n-back text-[20px]">arrow_back</span>
+              <span data-i18n="nav.back">Back</span>
+            </a>
+          </div>
         </header>
 
         <div class="flex-grow px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-10">
           <div class="mx-auto w-full max-w-lg">
             <div class="mb-8 sm:mb-10">
-              <h2 class="mb-2 font-display text-2xl font-semibold text-nexa-ink sm:text-3xl md:mb-3 md:text-4xl">
+              <h2 class="mb-2 font-display text-2xl font-semibold text-nexa-ink sm:text-3xl md:mb-3 md:text-4xl" data-i18n="apply.formTitle">
                 Host application
               </h2>
-              <p class="font-sans text-sm leading-relaxed text-nexa-ink-3 sm:text-base">
+              <p class="font-sans text-sm leading-relaxed text-nexa-ink-3 sm:text-base" data-i18n="apply.formSubtitle">
                 Tell us about your property. We’ll review and contact you within 48 hours to begin verification.
               </p>
             </div>
 
             <form class="space-y-7 sm:space-y-8" id="hostForm" novalidate>
               <div class="space-y-2">
-                <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="fullName"
+                <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="fullName" data-i18n="apply.fullName"
                   >Full name</label
                 >
                 <input
@@ -208,6 +238,7 @@
                   id="fullName"
                   name="fullName"
                   placeholder="Your full name"
+                  data-i18n-placeholder="apply.fullNamePh"
                   required
                   type="text"
                   autocomplete="name"
@@ -216,7 +247,7 @@
 
               <div class="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
                 <div class="space-y-2">
-                  <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="phone"
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="phone" data-i18n="apply.phone"
                     >Phone</label
                   >
                   <div
@@ -236,7 +267,7 @@
                   </div>
                 </div>
                 <div class="space-y-2">
-                  <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="email"
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" for="email" data-i18n="apply.email"
                     >Email</label
                   >
                   <input
@@ -244,6 +275,7 @@
                     id="email"
                     name="email"
                     placeholder="you@example.com"
+                    data-i18n-placeholder="apply.emailPh"
                     required
                     type="email"
                     autocomplete="email"
@@ -252,7 +284,7 @@
               </div>
 
               <div class="space-y-2">
-                <span class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" id="cityLabel"
+                <span class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" id="cityLabel" data-i18n="apply.city"
                   >City in Morocco</span
                 >
                 <div class="relative" id="citySelect" data-nexa-select>
@@ -263,9 +295,9 @@
                     aria-haspopup="listbox"
                     aria-expanded="false"
                     aria-labelledby="cityLabel"
-                    class="flex min-h-[48px] w-full items-center gap-2 rounded-full border border-nexa-line bg-white px-4 py-2.5 text-left font-sans text-sm text-nexa-ink shadow-sm outline-none transition-colors hover:border-nexa-primary/40 focus-visible:border-nexa-primary focus-visible:ring-2 focus-visible:ring-nexa-primary/20"
+                    class="flex min-h-[48px] w-full items-center gap-2 rounded-full border border-nexa-line bg-white px-4 py-2.5 text-start font-sans text-sm text-nexa-ink shadow-sm outline-none transition-colors hover:border-nexa-primary/40 focus-visible:border-nexa-primary focus-visible:ring-2 focus-visible:ring-nexa-primary/20"
                   >
-                    <span class="flex-1 truncate text-nexa-ink-4" id="cityTriggerLabel">Select a city</span>
+                    <span class="flex-1 truncate text-nexa-ink-4" id="cityTriggerLabel" data-i18n="apply.cityPlaceholder">Select a city</span>
                     <span
                       class="material-symbols-outlined shrink-0 text-[20px] text-nexa-ink-4 transition-transform"
                       id="cityChevron"
@@ -277,7 +309,7 @@
                     id="cityList"
                     role="listbox"
                     aria-labelledby="cityLabel"
-                    class="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-50 hidden max-h-[min(16rem,50dvh)] min-w-full overflow-y-auto rounded-2xl border border-nexa-line bg-white py-1.5 shadow-nexa-lg"
+                    class="absolute inset-inline-0 top-[calc(100%+0.5rem)] z-50 hidden max-h-[min(16rem,50dvh)] min-w-full overflow-y-auto rounded-2xl border border-nexa-line bg-white py-1.5 shadow-nexa-lg"
                   >
                     <!-- filled by js/city-select.js -->
                   </ul>
@@ -285,12 +317,13 @@
               </div>
 
               <fieldset class="space-y-4">
-                <legend class="text-xs font-semibold uppercase tracking-wider text-nexa-ink-4">Property type</legend>
+                <legend class="text-xs font-semibold uppercase tracking-wider text-nexa-ink-4" data-i18n="apply.propertyType">Property type</legend>
                 <div class="flex flex-wrap gap-3">
                   <label class="cursor-pointer">
                     <input class="peer sr-only" name="propertyType" type="radio" value="APARTMENT" required />
                     <span
                       class="block rounded-full border border-nexa-line px-5 py-2.5 text-sm font-medium text-nexa-ink-3 transition-all duration-200 peer-checked:border-nexa-primary peer-checked:bg-nexa-primary peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-nexa-primary/30 hover:border-nexa-primary/50"
+                      data-i18n="apply.apartment"
                       >Apartment</span
                     >
                   </label>
@@ -298,6 +331,7 @@
                     <input class="peer sr-only" name="propertyType" type="radio" value="VILLA" />
                     <span
                       class="block rounded-full border border-nexa-line px-5 py-2.5 text-sm font-medium text-nexa-ink-3 transition-all duration-200 peer-checked:border-nexa-primary peer-checked:bg-nexa-primary peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-nexa-primary/30 hover:border-nexa-primary/50"
+                      data-i18n="apply.villa"
                       >Villa</span
                     >
                   </label>
@@ -305,6 +339,7 @@
                     <input class="peer sr-only" checked name="propertyType" type="radio" value="RIAD" />
                     <span
                       class="block rounded-full border border-nexa-line px-5 py-2.5 text-sm font-medium text-nexa-ink-3 transition-all duration-200 peer-checked:border-nexa-primary peer-checked:bg-nexa-primary peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-nexa-primary/30 hover:border-nexa-primary/50"
+                      data-i18n="apply.riad"
                       >Riad</span
                     >
                   </label>
@@ -312,6 +347,7 @@
                     <input class="peer sr-only" name="propertyType" type="radio" value="HOTEL" />
                     <span
                       class="block rounded-full border border-nexa-line px-5 py-2.5 text-sm font-medium text-nexa-ink-3 transition-all duration-200 peer-checked:border-nexa-primary peer-checked:bg-nexa-primary peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-nexa-primary/30 hover:border-nexa-primary/50"
+                      data-i18n="apply.hotel"
                       >Hotel</span
                     >
                   </label>
@@ -319,6 +355,7 @@
                     <input class="peer sr-only" name="propertyType" type="radio" value="HOSTEL" />
                     <span
                       class="block rounded-full border border-nexa-line px-5 py-2.5 text-sm font-medium text-nexa-ink-3 transition-all duration-200 peer-checked:border-nexa-primary peer-checked:bg-nexa-primary peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-nexa-primary/30 hover:border-nexa-primary/50"
+                      data-i18n="apply.hostel"
                       >Hostel</span
                     >
                   </label>
@@ -329,6 +366,7 @@
                 <label
                   class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4"
                   for="propertyCount"
+                  data-i18n="apply.propertyCount"
                   >Number of properties</label
                 >
                 <input
@@ -348,6 +386,7 @@
                 <label
                   class="block text-xs font-semibold uppercase tracking-wider text-nexa-ink-4"
                   for="propertyDetails"
+                  data-i18n="apply.propertyDetails"
                   >Property details</label
                 >
                 <textarea
@@ -355,6 +394,7 @@
                   id="propertyDetails"
                   name="propertyDetails"
                   placeholder="Share a website, Instagram, or a short description of your property…"
+                  data-i18n-placeholder="apply.propertyDetailsPh"
                   rows="4"
                 ></textarea>
               </div>
@@ -366,6 +406,7 @@
                   class="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-md bg-nexa-primary py-4 font-sans text-sm font-bold uppercase tracking-widest text-white shadow-cta transition-all duration-300 hover:-translate-y-0.5 hover:bg-nexa-primary-dark disabled:pointer-events-none disabled:opacity-60"
                   id="submitBtn"
                   type="submit"
+                  data-i18n="apply.submit"
                 >
                   Submit application
                 </button>
@@ -375,23 +416,27 @@
             <footer class="mt-10 border-t border-nexa-line px-1 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-6 text-center sm:mt-12 sm:pt-8">
               <p class="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-xs leading-relaxed text-nexa-ink-4">
                 <span class="material-symbols-outlined icon-fill text-[16px] text-nexa-primary/70">shield_with_heart</span>
-                We’ll only use this to review your host application. See our
+                <span data-i18n="apply.footerBefore">We’ll only use this to review your host application. See our</span>
                 <a
                   class="font-semibold text-nexa-primary hover:underline"
                   href="https://www.nexastays.ma/en/privacy"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-legal="privacy"
+                  data-i18n="apply.privacy"
                   >Privacy Policy</a
                 >
-                and
+                <span data-i18n="apply.footerAnd">and</span>
                 <a
                   class="font-semibold text-nexa-primary hover:underline"
                   href="https://www.nexastays.ma/en/terms"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-legal="terms"
+                  data-i18n="apply.terms"
                   >Terms</a
-                >.
-                Need help?
+                ><span data-i18n="apply.footerAfter">.</span>
+                <span data-i18n="apply.footerHelp">Need help?</span>
                 <a class="font-semibold text-nexa-primary hover:underline" href="mailto:support@nexastays.ma"
                   >support@nexastays.ma</a
                 >
@@ -418,21 +463,22 @@
         <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-nexa-primary-soft text-nexa-primary">
           <span class="material-symbols-outlined text-3xl">check</span>
         </div>
-        <h2 class="mb-3 font-display text-2xl font-semibold text-nexa-ink" id="successTitle">Application received</h2>
-        <p class="mb-8 text-sm leading-relaxed text-nexa-ink-3">
+        <h2 class="mb-3 font-display text-2xl font-semibold text-nexa-ink" id="successTitle" data-i18n="apply.successTitle">Application received</h2>
+        <p class="mb-8 text-sm leading-relaxed text-nexa-ink-3" data-i18n="apply.successBody">
           Thank you. Our hospitality team will review your application and reach out within 48 hours.
         </p>
         <button
           class="min-h-[48px] w-full rounded-md bg-nexa-primary py-3.5 font-sans text-sm font-bold uppercase tracking-widest text-white shadow-cta transition-colors hover:bg-nexa-primary-dark"
           type="button"
           data-close-modal
+          data-i18n="apply.successDone"
         >
           Done
         </button>
       </div>
     </div>
 
-    <script src="js/city-select.js"></script>
-    <script src="js/apply.js"></script>
+    <script src="js/city-select.js" defer></script>
+    <script src="js/apply.js" defer></script>
   </body>
 </html>

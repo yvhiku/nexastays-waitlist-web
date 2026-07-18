@@ -1,5 +1,5 @@
 (() => {
-  /** Same city list as nexastays_web/lib/moroccan-cities.ts (+ Other). */
+  /** Same city list as nexastays_web/lib/moroccan-cities.ts (+ Other). Values stay English for Formspree. */
   const CITIES = [
     "Agadir",
     "Asilah",
@@ -50,6 +50,26 @@
   let open = false;
   let value = "";
 
+  function t(key) {
+    return window.NexaI18n?.t(key) || key;
+  }
+
+  function displayLabel(city) {
+    if (city === "Other") return t("apply.cityOther");
+    return city;
+  }
+
+  function placeholderText() {
+    return t("apply.cityPlaceholder");
+  }
+
+  function optionClass(selected) {
+    const align = "text-start";
+    return selected
+      ? `w-full px-3.5 py-2.5 ${align} text-sm font-medium transition-colors bg-nexa-primary text-white`
+      : `w-full px-3.5 py-2.5 ${align} text-sm font-medium transition-colors text-nexa-ink hover:bg-nexa-primary-soft hover:text-nexa-primary`;
+  }
+
   function renderOptions() {
     list.innerHTML = "";
     CITIES.forEach((city) => {
@@ -59,9 +79,8 @@
       btn.type = "button";
       btn.setAttribute("role", "option");
       btn.dataset.value = city;
-      btn.textContent = city;
-      btn.className =
-        "w-full px-3.5 py-2.5 text-left text-sm font-medium transition-colors text-nexa-ink hover:bg-nexa-primary-soft hover:text-nexa-primary";
+      btn.textContent = displayLabel(city);
+      btn.className = optionClass(false);
       btn.addEventListener("click", () => selectCity(city));
       li.appendChild(btn);
       list.appendChild(li);
@@ -73,9 +92,7 @@
     list.querySelectorAll('[role="option"]').forEach((btn) => {
       const selected = btn.dataset.value === value;
       btn.setAttribute("aria-selected", selected ? "true" : "false");
-      btn.className = selected
-        ? "w-full px-3.5 py-2.5 text-left text-sm font-medium transition-colors bg-nexa-primary text-white"
-        : "w-full px-3.5 py-2.5 text-left text-sm font-medium transition-colors text-nexa-ink hover:bg-nexa-primary-soft hover:text-nexa-primary";
+      btn.className = optionClass(selected);
     });
   }
 
@@ -95,7 +112,8 @@
   function selectCity(city) {
     value = city;
     hidden.value = city;
-    labelEl.textContent = city;
+    labelEl.textContent = displayLabel(city);
+    labelEl.removeAttribute("data-i18n");
     labelEl.classList.remove("text-nexa-ink-4");
     labelEl.classList.add("text-nexa-ink");
     syncSelectedStyles();
@@ -106,11 +124,21 @@
   function reset() {
     value = "";
     hidden.value = "";
-    labelEl.textContent = "Select a city";
+    labelEl.textContent = placeholderText();
+    labelEl.setAttribute("data-i18n", "apply.cityPlaceholder");
     labelEl.classList.add("text-nexa-ink-4");
     labelEl.classList.remove("text-nexa-ink");
     syncSelectedStyles();
     setOpen(false);
+  }
+
+  function refreshLabels() {
+    renderOptions();
+    if (!value) {
+      labelEl.textContent = placeholderText();
+    } else {
+      labelEl.textContent = displayLabel(value);
+    }
   }
 
   trigger.addEventListener("click", () => setOpen(!open));
@@ -124,7 +152,9 @@
     if (e.key === "Escape" && open) setOpen(false);
   });
 
+  window.addEventListener("nexa:langchange", refreshLabels);
+
   renderOptions();
 
-  window.NexaCitySelect = { reset, getValue: () => value };
+  window.NexaCitySelect = { reset, getValue: () => value, refreshLabels };
 })();

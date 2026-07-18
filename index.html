@@ -9,9 +9,20 @@
       content="Join Morocco's verified short-stay marketplace. Become a founding host with 0% commission for your first 3 months."
     />
     <link rel="icon" href="assets/nexastays.png" type="image/png" />
+    <script>
+      (function () {
+        try {
+          var l = localStorage.getItem("nexa_waitlist_lang");
+          if (l === "ar" || l === "fr" || l === "en") {
+            document.documentElement.lang = l;
+            document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+          }
+        } catch (e) {}
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -62,11 +73,16 @@
       };
     </script>
     <link rel="stylesheet" href="css/nexa.css" />
+    <script src="js/i18n.js" defer></script>
   </head>
-  <body class="overflow-x-hidden bg-nexa-bg text-nexa-ink font-sans antialiased selection:bg-nexa-primary selection:text-white">
+  <body
+    class="overflow-x-hidden bg-nexa-bg text-nexa-ink font-sans antialiased selection:bg-nexa-primary selection:text-white"
+    data-i18n-title="meta.indexTitle"
+    data-i18n-desc="meta.indexDesc"
+  >
     <!-- Nav -->
     <nav class="fixed top-0 z-[1100] w-full nexa-glass">
-      <div class="mx-auto flex max-w-container items-center justify-between gap-3 px-4 py-3 sm:px-5 sm:py-4 md:px-16">
+      <div class="mx-auto flex max-w-container items-center justify-between gap-2 px-4 py-3 sm:gap-3 sm:px-5 sm:py-4 md:px-16">
         <a class="group flex min-w-0 items-center gap-2" href="index.html">
           <img
             alt="Nexa Stays"
@@ -81,21 +97,28 @@
           </span>
         </a>
         <div class="hidden items-center gap-8 md:flex">
-          <a class="font-sans text-sm font-medium text-nexa-ink-3 transition-colors duration-300 hover:text-nexa-primary" href="#why-host">Why Host</a>
-          <a class="font-sans text-sm font-medium text-nexa-ink-3 transition-colors duration-300 hover:text-nexa-primary" href="#how-it-works">How It Works</a>
-          <a class="font-sans text-sm font-medium text-nexa-ink-3 transition-colors duration-300 hover:text-nexa-primary" href="#apply">Apply</a>
+          <a class="font-sans text-sm font-medium text-nexa-ink-3 transition-colors duration-300 hover:text-nexa-primary" href="#why-host" data-i18n="nav.whyHost">Why Host</a>
+          <a class="font-sans text-sm font-medium text-nexa-ink-3 transition-colors duration-300 hover:text-nexa-primary" href="#how-it-works" data-i18n="nav.howItWorks">How It Works</a>
+          <a class="font-sans text-sm font-medium text-nexa-ink-3 transition-colors duration-300 hover:text-nexa-primary" href="#apply" data-i18n="nav.apply">Apply</a>
         </div>
-        <a
-          class="inline-flex min-h-[44px] shrink-0 items-center rounded-md bg-nexa-primary px-3.5 py-2.5 font-sans text-sm font-semibold text-white shadow-cta transition-all duration-300 hover:bg-nexa-primary-dark hover:-translate-y-px sm:px-5"
-          href="apply.html"
-        >
-          <span class="sm:hidden">Apply</span>
-          <span class="hidden sm:inline">Become a Host</span>
-        </a>
+        <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+          <div class="nexa-lang" role="group" data-i18n-aria="nav.lang" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+            <button type="button" data-lang="ar" aria-pressed="false">ع</button>
+          </div>
+          <a
+            class="inline-flex min-h-[44px] shrink-0 items-center rounded-md bg-nexa-primary px-3.5 py-2.5 font-sans text-sm font-semibold text-white shadow-cta transition-all duration-300 hover:bg-nexa-primary-dark hover:-translate-y-px sm:px-5"
+            href="apply.html"
+          >
+            <span class="sm:hidden" data-i18n="nav.becomeHostShort">Apply</span>
+            <span class="hidden sm:inline" data-i18n="nav.becomeHost">Become a Host</span>
+          </a>
+        </div>
       </div>
     </nav>
 
-    <!-- Hero: one composition — brand, headline, support, CTAs, full-bleed image -->
+    <!-- Hero -->
     <header class="relative flex min-h-[min(88vh,100dvh)] items-center justify-center overflow-hidden px-4 pb-12 pt-24 sm:px-5 sm:pb-16 sm:pt-28">
       <div class="absolute inset-0 z-0">
         <img
@@ -106,26 +129,27 @@
         <div class="absolute inset-0 bg-gradient-to-t from-nexa-ink/70 via-nexa-ink/25 to-nexa-ink/10"></div>
       </div>
       <div class="relative z-10 mx-auto w-full max-w-container px-1 text-center text-white sm:px-5 md:px-16">
-        <p class="nexa-fade-up mb-4 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-white/90 sm:mb-6 sm:text-xs sm:tracking-[0.14em]">
+        <p class="nexa-fade-up mb-4 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-white/90 sm:mb-6 sm:text-xs sm:tracking-[0.14em]" data-i18n="hero.eyebrow">
           Founding hosts · 0% commission for 3 months
         </p>
-        <h1 class="nexa-fade-up font-display text-[1.85rem] font-bold leading-[1.15] drop-shadow-sm sm:text-4xl md:text-6xl md:leading-[1.1]">
-          Turn your property into a<br class="hidden md:block" />
-          trusted travel experience
+        <h1 class="nexa-fade-up font-display text-[1.85rem] font-bold leading-[1.15] drop-shadow-sm sm:text-4xl md:text-6xl md:leading-[1.1]" data-i18n="hero.title">
+          Turn your property into a trusted travel experience
         </h1>
-        <p class="nexa-fade-up-delay mx-auto mt-4 max-w-2xl font-sans text-base font-light leading-relaxed text-white/95 sm:mt-6 sm:text-lg md:text-xl">
+        <p class="nexa-fade-up-delay mx-auto mt-4 max-w-2xl font-sans text-base font-light leading-relaxed text-white/95 sm:mt-6 sm:text-lg md:text-xl" data-i18n="hero.subtitle">
           Join Morocco’s verified short-stay marketplace — safety, transparency, and hospitality built for hosts and guests.
         </p>
         <div class="nexa-fade-up-delay mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-5">
           <a
             class="inline-flex min-h-[48px] w-full max-w-sm items-center justify-center rounded-md bg-nexa-primary px-8 py-3.5 font-sans text-base font-semibold text-white shadow-cta transition-all duration-300 hover:-translate-y-0.5 hover:bg-nexa-primary-dark sm:w-auto sm:px-10 sm:py-4"
             href="apply.html"
+            data-i18n="hero.ctaPrimary"
           >
             Become a Nexa Host
           </a>
           <a
             class="inline-flex min-h-[48px] w-full max-w-sm items-center justify-center rounded-md border border-white/40 bg-white/10 px-8 py-3.5 font-sans text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20 sm:w-auto sm:px-10 sm:py-4"
             href="#how-it-works"
+            data-i18n="hero.ctaSecondary"
           >
             See how it works
           </a>
@@ -137,8 +161,8 @@
     <section class="bg-nexa-bg py-14 sm:py-20" id="why-host">
       <div class="mx-auto max-w-container px-4 sm:px-5 md:px-16">
         <div class="mb-10 max-w-2xl sm:mb-12">
-          <h2 class="font-display text-2xl font-semibold text-nexa-ink sm:text-3xl md:text-4xl">Why host with Nexa</h2>
-          <p class="mt-3 font-sans text-base text-nexa-ink-3 md:text-lg">
+          <h2 class="font-display text-2xl font-semibold text-nexa-ink sm:text-3xl md:text-4xl" data-i18n="why.title">Why host with Nexa</h2>
+          <p class="mt-3 font-sans text-base text-nexa-ink-3 md:text-lg" data-i18n="why.subtitle">
             Built for Moroccan properties that want clearer trust signals and cleaner guest journeys.
           </p>
         </div>
@@ -147,8 +171,8 @@
             <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-nexa-primary-soft">
               <span class="material-symbols-outlined text-nexa-primary">security</span>
             </div>
-            <h3 class="mb-3 font-display text-xl font-semibold">Host with confidence</h3>
-            <p class="text-sm leading-relaxed text-nexa-ink-3">
+            <h3 class="mb-3 font-display text-xl font-semibold" data-i18n="why.card1Title">Host with confidence</h3>
+            <p class="text-sm leading-relaxed text-nexa-ink-3" data-i18n="why.card1Body">
               Guests go through identity verification so you know who’s staying in your home.
             </p>
           </article>
@@ -156,8 +180,8 @@
             <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-nexa-accent-soft">
               <span class="material-symbols-outlined text-nexa-accent">payments</span>
             </div>
-            <h3 class="mb-3 font-display text-xl font-semibold">Transparent earnings</h3>
-            <p class="text-sm leading-relaxed text-nexa-ink-3">
+            <h3 class="mb-3 font-display text-xl font-semibold" data-i18n="why.card2Title">Transparent earnings</h3>
+            <p class="text-sm leading-relaxed text-nexa-ink-3" data-i18n="why.card2Body">
               Clear pricing, on-time payouts, and straightforward fees — founding hosts get 0% commission for 3 months.
             </p>
           </article>
@@ -165,8 +189,8 @@
             <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-nexa-primary-soft">
               <span class="material-symbols-outlined text-nexa-primary">support_agent</span>
             </div>
-            <h3 class="mb-3 font-display text-xl font-semibold">Local support</h3>
-            <p class="text-sm leading-relaxed text-nexa-ink-3">
+            <h3 class="mb-3 font-display text-xl font-semibold" data-i18n="why.card3Title">Local support</h3>
+            <p class="text-sm leading-relaxed text-nexa-ink-3" data-i18n="why.card3Body">
               A Moroccan team that understands riads, apartments, and guest expectations on the ground.
             </p>
           </article>
@@ -178,30 +202,30 @@
     <section class="border-y border-nexa-line/60 bg-nexa-bg-2 py-14 sm:py-20" id="how-it-works">
       <div class="mx-auto max-w-container px-4 sm:px-5 md:px-16">
         <div class="mb-10 max-w-2xl sm:mb-12">
-          <h2 class="font-display text-2xl font-semibold text-nexa-ink sm:text-3xl md:text-4xl">How it works</h2>
-          <p class="mt-3 font-sans text-base text-nexa-ink-3 md:text-lg">
+          <h2 class="font-display text-2xl font-semibold text-nexa-ink sm:text-3xl md:text-4xl" data-i18n="how.title">How it works</h2>
+          <p class="mt-3 font-sans text-base text-nexa-ink-3 md:text-lg" data-i18n="how.subtitle">
             From application to live listing — designed around verification, not guesswork.
           </p>
         </div>
         <ol class="grid grid-cols-1 gap-8 md:grid-cols-3">
           <li class="relative rounded-lg border border-nexa-line/50 bg-white p-8 shadow-nexa-sm">
             <span class="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-nexa-primary font-sans text-sm font-bold text-white">1</span>
-            <h3 class="mb-2 font-display text-xl font-semibold">Apply</h3>
-            <p class="text-sm leading-relaxed text-nexa-ink-3">
+            <h3 class="mb-2 font-display text-xl font-semibold" data-i18n="how.step1Title">Apply</h3>
+            <p class="text-sm leading-relaxed text-nexa-ink-3" data-i18n="how.step1Body">
               Tell us about you and your property. We review founding applications within 48 hours.
             </p>
           </li>
           <li class="relative rounded-lg border border-nexa-line/50 bg-white p-8 shadow-nexa-sm">
             <span class="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-nexa-primary font-sans text-sm font-bold text-white">2</span>
-            <h3 class="mb-2 font-display text-xl font-semibold">Verify</h3>
-            <p class="text-sm leading-relaxed text-nexa-ink-3">
+            <h3 class="mb-2 font-display text-xl font-semibold" data-i18n="how.step2Title">Verify</h3>
+            <p class="text-sm leading-relaxed text-nexa-ink-3" data-i18n="how.step2Body">
               Complete host identity checks and listing standards so guests can book with confidence.
             </p>
           </li>
           <li class="relative rounded-lg border border-nexa-line/50 bg-white p-8 shadow-nexa-sm">
             <span class="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-nexa-primary font-sans text-sm font-bold text-white">3</span>
-            <h3 class="mb-2 font-display text-xl font-semibold">Go live</h3>
-            <p class="text-sm leading-relaxed text-nexa-ink-3">
+            <h3 class="mb-2 font-display text-xl font-semibold" data-i18n="how.step3Title">Go live</h3>
+            <p class="text-sm leading-relaxed text-nexa-ink-3" data-i18n="how.step3Body">
               Publish your stay, welcome verified guests, and enjoy founding-host commission terms.
             </p>
           </li>
@@ -214,13 +238,14 @@
       <div class="mx-auto max-w-container px-4 sm:px-5 md:px-16">
         <div class="overflow-hidden rounded-xl bg-gradient-to-br from-nexa-ink to-nexa-ink-2 p-6 text-white shadow-nexa-lg sm:p-12 md:p-14">
           <div class="max-w-2xl">
-            <h2 class="font-display text-3xl font-semibold md:text-4xl">Ready to join the founding hosts?</h2>
-            <p class="mt-4 font-sans text-base text-white/75 md:text-lg">
+            <h2 class="font-display text-3xl font-semibold md:text-4xl" data-i18n="cta.title">Ready to join the founding hosts?</h2>
+            <p class="mt-4 font-sans text-base text-white/75 md:text-lg" data-i18n="cta.body">
               Limited to the first 100 hosts. Apply now — we’ll reach out to start verification.
             </p>
             <a
               class="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-md bg-nexa-primary px-10 py-4 font-sans text-base font-semibold text-white shadow-cta transition-all duration-300 hover:-translate-y-0.5 hover:bg-nexa-primary-dark"
               href="apply.html"
+              data-i18n="cta.button"
             >
               Start your application
             </a>
@@ -240,20 +265,20 @@
               <span class="text-nexa-primary">Stays</span>
             </span>
           </div>
-          <p class="mb-6 font-sans text-sm leading-relaxed text-nexa-ink-3">
+          <p class="mb-6 font-sans text-sm leading-relaxed text-nexa-ink-3" data-i18n="footer.tagline">
             Verified stays in Morocco with more safety, transparency, and comfort.
           </p>
         </div>
         <div>
-          <h4 class="mb-5 font-sans text-xs font-bold uppercase tracking-widest text-nexa-ink">Hosts</h4>
+          <h4 class="mb-5 font-sans text-xs font-bold uppercase tracking-widest text-nexa-ink" data-i18n="footer.hosts">Hosts</h4>
           <ul class="space-y-3">
-            <li><a class="text-sm text-nexa-ink-3 transition-colors hover:text-nexa-primary" href="#why-host">Why Host</a></li>
-            <li><a class="text-sm text-nexa-ink-3 transition-colors hover:text-nexa-primary" href="#how-it-works">How It Works</a></li>
-            <li><a class="text-sm text-nexa-ink-3 transition-colors hover:text-nexa-primary" href="apply.html">Apply</a></li>
+            <li><a class="text-sm text-nexa-ink-3 transition-colors hover:text-nexa-primary" href="#why-host" data-i18n="nav.whyHost">Why Host</a></li>
+            <li><a class="text-sm text-nexa-ink-3 transition-colors hover:text-nexa-primary" href="#how-it-works" data-i18n="nav.howItWorks">How It Works</a></li>
+            <li><a class="text-sm text-nexa-ink-3 transition-colors hover:text-nexa-primary" href="apply.html" data-i18n="nav.apply">Apply</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="mb-5 font-sans text-xs font-bold uppercase tracking-widest text-nexa-ink">Support</h4>
+          <h4 class="mb-5 font-sans text-xs font-bold uppercase tracking-widest text-nexa-ink" data-i18n="footer.support">Support</h4>
           <ul class="space-y-3">
             <li>
               <a
@@ -265,7 +290,7 @@
           </ul>
         </div>
         <div>
-          <h4 class="mb-5 font-sans text-xs font-bold uppercase tracking-widest text-nexa-ink">Legal</h4>
+          <h4 class="mb-5 font-sans text-xs font-bold uppercase tracking-widest text-nexa-ink" data-i18n="footer.legal">Legal</h4>
           <ul class="space-y-3">
             <li>
               <a
@@ -273,6 +298,8 @@
                 href="https://www.nexastays.ma/en/terms"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-legal="terms"
+                data-i18n="footer.terms"
                 >Terms of Service</a
               >
             </li>
@@ -282,6 +309,8 @@
                 href="https://www.nexastays.ma/en/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-legal="privacy"
+                data-i18n="footer.privacy"
                 >Privacy Policy</a
               >
             </li>
@@ -289,10 +318,10 @@
         </div>
       </div>
       <div class="mx-auto mt-12 flex max-w-container flex-col items-center justify-between gap-4 border-t border-nexa-line/50 px-5 pt-8 md:flex-row md:px-16">
-        <p class="font-sans text-xs text-nexa-ink-4">© 2026 Nexa Stays. Verified Moroccan hospitality.</p>
+        <p class="font-sans text-xs text-nexa-ink-4" data-i18n="footer.copyright">© 2026 Nexa Stays. Verified Moroccan hospitality.</p>
         <span class="flex items-center gap-2 font-sans text-xs text-nexa-ink-4">
           <span class="material-symbols-outlined icon-fill text-[18px] text-nexa-primary">verified_user</span>
-          Built for verified hosts &amp; guests
+          <span data-i18n="footer.badge">Built for verified hosts &amp; guests</span>
         </span>
       </div>
     </footer>

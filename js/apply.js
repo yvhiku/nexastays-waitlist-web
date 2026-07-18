@@ -9,6 +9,10 @@
   const FORMSPREE_ENDPOINT = "https://formspree.io/f/xwvgljwa";
   const ENDPOINT = window.NEXA_WAITLIST_ENDPOINT || FORMSPREE_ENDPOINT;
 
+  function t(key) {
+    return window.NexaI18n?.t(key) || key;
+  }
+
   function openModal() {
     modal.classList.remove("opacity-0", "pointer-events-none");
     modal.setAttribute("aria-hidden", "false");
@@ -54,7 +58,7 @@
     } catch {
       /* ignore parse errors */
     }
-    return "Could not submit right now. Please try again.";
+    return t("apply.errSubmit");
   }
 
   modal.querySelectorAll("[data-close-modal]").forEach((el) => {
@@ -73,7 +77,7 @@
     const city = String(data.get("city") || "").trim();
 
     if (!city) {
-      showError("Please select a city.");
+      showError(t("apply.errCity"));
       document.getElementById("cityTrigger")?.focus();
       return;
     }
@@ -85,6 +89,7 @@
 
     const phoneRaw = String(data.get("phone") || "").replace(/\s+/g, "");
     const email = String(data.get("email") || "").trim().toLowerCase();
+    const lang = window.NexaI18n?.getLang?.() || "en";
     const payload = {
       fullName: String(data.get("fullName") || "").trim(),
       phone: phoneRaw.startsWith("+") ? phoneRaw : `+212${phoneRaw.replace(/^0+/, "")}`,
@@ -94,14 +99,13 @@
       propertyCount: Number(data.get("propertyCount") || 1),
       propertyDetails: String(data.get("propertyDetails") || "").trim(),
       source: "waitlist-web",
+      language: lang,
       _replyto: email,
       _subject: `Nexa Stays host waitlist — ${city}`,
     };
 
-    const original = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    submitBtn.innerHTML =
-      '<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span> Submitting…';
+    submitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span> ${t("apply.submitting")}`;
 
     try {
       const res = await fetch(ENDPOINT, {
@@ -124,10 +128,11 @@
       if (riad) riad.checked = true;
       openModal();
     } catch (err) {
-      showError(err instanceof Error ? err.message : "Something went wrong.");
+      showError(err instanceof Error ? err.message : t("apply.errGeneric"));
     } finally {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = original;
+      submitBtn.textContent = t("apply.submit");
+      submitBtn.setAttribute("data-i18n", "apply.submit");
     }
   });
 })();

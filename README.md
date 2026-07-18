@@ -11,6 +11,10 @@ Static landing for **founding host** acquisition. Visual system matches [`docs/N
 | `index.html` | Marketing landing (hero, why host, how it works, CTA) |
 | `apply.html` | Host application form + success modal |
 
+## Languages
+
+EN / FR / AR via the header language switcher (`js/i18n.js`). Choice is stored in `localStorage` (`nexa_waitlist_lang`). Arabic uses RTL layout and IBM Plex Sans Arabic. Legal links follow the locale (`/en`, `/fr`, `/ar` on nexastays.ma).
+
 ## Run locally
 
 ```bash
