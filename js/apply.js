@@ -246,7 +246,8 @@
 
     const hostExp = form.querySelector('input[name="hostExperience"]:checked');
     const propCount = form.querySelector('input[name="propertyCount"]:checked');
-    if (!propCount || !hostExp) {
+    const hostActivity = form.querySelector('input[name="hostActivity"]:checked');
+    if (!propCount || !hostExp || !hostActivity) {
       showError(t("apply.errStep2"));
       return;
     }
@@ -269,6 +270,7 @@
       propertyType: String(data.get("propertyType") || ""),
       propertyCount: String(data.get("propertyCount") || ""),
       hostExperience: String(data.get("hostExperience") || ""),
+      hostActivity: String(data.get("hostActivity") || ""),
       propertyDetails: String(data.get("propertyDetails") || "").trim(),
       source: "waitlist-web",
       language: lang,
@@ -304,6 +306,8 @@
       if (count1) count1.checked = true;
       const expNew = form.querySelector('input[name="hostExperience"][value="new"]');
       if (expNew) expNew.checked = true;
+      const actMost = form.querySelector('input[name="hostActivity"][value="most_weeks"]');
+      if (actMost) actMost.checked = true;
       setStep(1);
       formStartFired = false;
       step1CompleteFired = false;

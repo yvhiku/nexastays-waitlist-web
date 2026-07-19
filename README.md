@@ -1,33 +1,37 @@
 # Nexa Stays — Waitlist / Founding Hosts
 
-Static landing for **founding host** acquisition. Visual system matches [`docs/NEXA_STAYS_WEB_DESIGN.md`](../docs/NEXA_STAYS_WEB_DESIGN.md) (Playfair + DM Sans, rose primary `#E8507A`).
+Static **single-page** conversion funnel for founding host acquisition. Visual system matches [`docs/NEXA_STAYS_WEB_DESIGN.md`](../docs/NEXA_STAYS_WEB_DESIGN.md) (Playfair + DM Sans, rose primary `#E8507A`).
 
-**Live site:** [https://join.nexastays.ma](https://join.nexastays.ma/index.html)
+**Live site:** [https://join.nexastays.ma](https://join.nexastays.ma/)
 
-## Production freeze (V1 conversion)
+## Production freeze (V2 — single page)
 
-**Paid traffic** lands on form-first `apply.html`. **Organic** keeps the marketing `index.html`.
+One URL for all traffic (organic + paid):
 
-| Intent | URL |
-|--------|-----|
-| Instagram / paid ads | `https://join.nexastays.ma/apply.html?utm_source=instagram&utm_medium=paid&utm_campaign=founding100` |
-| Organic / brand | `https://join.nexastays.ma/` |
+```
+https://join.nexastays.ma/?utm_source=instagram&utm_medium=paid&utm_campaign=founding100
+```
 
-If someone hits `index.html` with paid/social UTMs (`utm_source` or `utm_medium` like `instagram`, `paid`, `cpc`, `social`), they are redirected to `apply.html` with the query string preserved.
+or simply `https://join.nexastays.ma/`
 
-### Apply page funnel
+`apply.html` redirects to `index.html` and preserves the query string (legacy ad links keep working).
 
-1. Tight offer hero (First 100 + 0% commission + 4 ticks)
-2. Two-step form with progress (`Step 1 of 2`)
-3. Trust / How it works / FAQ below the form
-4. Success modal with Late August 2026 invitation timeline
+### Page spine
+
+1. Minimal nav (logo → nexastays.ma + language)
+2. Hero offer (First 100 + 0% commission + ticks)
+3. Urgency line (applications reviewed in order received)
+4. Trust strip (first 100 / no payment / &lt;2 min)
+5. Two-step form
+6. Why host / How it works / Why Nexa / FAQ
+7. Footer
 
 **Step 1:** name, email, phone, city, property type  
-**Step 2:** property count (`1` / `2–5` / `6–10` / `10+`), hosting experience (`airbnb` / `booking` / `both` / `new`), notes
+**Step 2:** property count, hosting experience, expected activity, property details (optional)
 
 ### Analytics KPI
 
-Vercel Web Analytics custom events on `apply.html`:
+Vercel Web Analytics custom events on `index.html`:
 
 | Event | When |
 |-------|------|
@@ -37,16 +41,20 @@ Vercel Web Analytics custom events on `apply.html`:
 
 UTM / `fbclid` / `gclid` are stored in `sessionStorage` and included in the Formspree payload.
 
-Funnel to watch: **Ad Click → Landing → Form Start → Step 1 Complete → Form Submit → Qualified** (manual).
+Funnel: **Ad Click → Landing → Form Start → Step 1 Complete → Form Submit → Qualified** (manual review).
 
 ---
 
-## Pages
+## Files
 
-| File | Purpose |
+| Path | Purpose |
 |------|---------|
-| `index.html` | Marketing landing (organic) |
-| `apply.html` | Conversion / application (ads + Apply CTAs) |
+| `index.html` | Conversion landing (form + story) |
+| `apply.html` | Redirect → `index.html` (legacy) |
+| `css/` | Styles |
+| `js/apply.js` | Two-step form, UTM, events |
+| `js/i18n.js` | EN / FR / AR |
+| `js/city-select.js` | City picker |
 
 ## Languages
 
@@ -73,7 +81,7 @@ You receive them in the Formspree **Submissions** tab (and email if configured).
 
 1. **Restrict to Domain:** set `nexastays.ma` (covers `join.nexastays.ma`).
 2. If Formspree’s default **reCAPTCHA** is on, turn it off for Ajax (or add your own keys).
-3. After changing `js/apply.js`, **redeploy** so [join.nexastays.ma](https://join.nexastays.ma) picks up the update.
+3. After changing files, **redeploy** so [join.nexastays.ma](https://join.nexastays.ma) picks up the update.
 
 Override the endpoint before scripts load if needed:
 
@@ -89,9 +97,8 @@ Logo: `assets/nexastays.png` (synced from `nexastays_web/public/images/nexastays
 
 ## Vercel Web Analytics
 
-This is a **static HTML** site (not Next.js). Tracking uses Vercel’s HTML snippet on `index.html` and `apply.html` (`/_vercel/insights/script.js`).
+Static HTML site. Tracking uses Vercel’s HTML snippet (`/_vercel/insights/script.js`).
 
 1. In the Vercel project, open **Analytics** and click **Enable**.
-2. Redeploy after enabling so the insights routes are available.
-3. Visit the live site and navigate between pages; page views should appear within ~30s (disable content blockers when testing).
-4. Custom events (`form_start`, `step1_complete`, `form_submit`) appear under Analytics → Events when supported for your plan.
+2. Redeploy after enabling.
+3. Custom events (`form_start`, `step1_complete`, `form_submit`) appear under Analytics → Events when supported for your plan.
