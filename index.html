@@ -18,6 +18,18 @@
             document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
           }
         } catch (e) {}
+        /* Paid / social UTM → form-first apply page */
+        try {
+          var q = new URLSearchParams(window.location.search);
+          var src = (q.get("utm_source") || "").toLowerCase();
+          var med = (q.get("utm_medium") || "").toLowerCase();
+          var paid =
+            /instagram|facebook|meta|tiktok|ads/.test(src) ||
+            /paid|cpc|cpm|ppc|social|paid_social/.test(med);
+          if (paid) {
+            window.location.replace("apply.html" + window.location.search);
+          }
+        } catch (e2) {}
       })();
     </script>
     <script src="https://cdn.tailwindcss.com"></script>

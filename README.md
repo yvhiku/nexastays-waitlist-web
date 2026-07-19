@@ -4,18 +4,53 @@ Static landing for **founding host** acquisition. Visual system matches [`docs/N
 
 **Live site:** [https://join.nexastays.ma](https://join.nexastays.ma/index.html)
 
+## Production freeze (V1 conversion)
+
+**Paid traffic** lands on form-first `apply.html`. **Organic** keeps the marketing `index.html`.
+
+| Intent | URL |
+|--------|-----|
+| Instagram / paid ads | `https://join.nexastays.ma/apply.html?utm_source=instagram&utm_medium=paid&utm_campaign=founding100` |
+| Organic / brand | `https://join.nexastays.ma/` |
+
+If someone hits `index.html` with paid/social UTMs (`utm_source` or `utm_medium` like `instagram`, `paid`, `cpc`, `social`), they are redirected to `apply.html` with the query string preserved.
+
+### Apply page funnel
+
+1. Tight offer hero (First 100 + 0% commission + 4 ticks)
+2. Two-step form with progress (`Step 1 of 2`)
+3. Trust / How it works / FAQ below the form
+4. Success modal with Late August 2026 invitation timeline
+
+**Step 1:** name, email, phone, city, property type  
+**Step 2:** property count (`1` / `2–5` / `6–10` / `10+`), hosting experience (`airbnb` / `booking` / `both` / `new`), notes
+
+### Analytics KPI
+
+Vercel Web Analytics custom events on `apply.html`:
+
+| Event | When |
+|-------|------|
+| `form_start` | First focus/input on the form |
+| `step1_complete` | Continue from step 1 (validated) |
+| `form_submit` | Successful Formspree response |
+
+UTM / `fbclid` / `gclid` are stored in `sessionStorage` and included in the Formspree payload.
+
+Funnel to watch: **Ad Click → Landing → Form Start → Step 1 Complete → Form Submit → Qualified** (manual).
+
+---
+
 ## Pages
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Marketing landing (hero, why host, how it works, CTA) |
-| `apply.html` | Host application form + success modal |
+| `index.html` | Marketing landing (organic) |
+| `apply.html` | Conversion / application (ads + Apply CTAs) |
 
 ## Languages
 
 EN / FR / AR via the header language switcher (`js/i18n.js`). Choice is stored in `localStorage` (`nexa_waitlist_lang`). Arabic uses RTL layout and IBM Plex Sans Arabic. Legal links follow the locale (`/en`, `/fr`, `/ar` on nexastays.ma).
-
-Messaging hierarchy: **Founding Host Program** first, limited to 100 hosts, with **0% commission for 3 months** as the exclusive reward—not the primary headline.
 
 ## Run locally
 
@@ -59,3 +94,4 @@ This is a **static HTML** site (not Next.js). Tracking uses Vercel’s HTML snip
 1. In the Vercel project, open **Analytics** and click **Enable**.
 2. Redeploy after enabling so the insights routes are available.
 3. Visit the live site and navigate between pages; page views should appear within ~30s (disable content blockers when testing).
+4. Custom events (`form_start`, `step1_complete`, `form_submit`) appear under Analytics → Events when supported for your plan.

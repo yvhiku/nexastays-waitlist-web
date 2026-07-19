@@ -39,6 +39,22 @@ h4,
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
+/* Apply form progress */
+.nexa-progress-track {
+  height: 6px;
+  width: 100%;
+  border-radius: 999px;
+  background: #ede0e5;
+  overflow: hidden;
+}
+
+.nexa-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #e8507a;
+  transition: width 200ms ease;
+}
+
 .nexa-glass {
   background: rgba(253, 251, 252, 0.85);
   backdrop-filter: blur(12px);
